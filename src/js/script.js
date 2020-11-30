@@ -37,8 +37,24 @@ class MovieDB{
 
     afficheDernierFilm(data){
         for (var i = 0; i < data.length; i++) {
+
             console.log(data[i].title);
-            console.log(data[i].overview);
+
+            let unArticle = document.querySelector(".template>article.film").cloneNode(true);
+
+            unArticle.querySelector("h2").innerHTML = data[i].title;
+
+            unArticle.querySelector("p.description").innerHTML = data[i].overview || "Pas de description";
+
+            let src = this.imgPath + "w185" + data[i].poster_path;
+
+            let uneImage = unArticle.querySelector("img");
+
+            uneImage.setAttribute("src", src);
+
+            uneImage.setAttribute("alt", data[i].title);
+
+            document.querySelector(".liste-films").appendChild(unArticle);
         }
     }
 
